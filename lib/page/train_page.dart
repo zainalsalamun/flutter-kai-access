@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../widget/destination.dart';
+
 class TrainPage extends StatelessWidget {
   const TrainPage({super.key});
  @override
@@ -9,9 +11,14 @@ class TrainPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          'Kereta',
-          style: TextStyle(color: Colors.black),
+        title:const Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Kereta',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
         ),
         centerTitle: true,
       ),
@@ -57,11 +64,11 @@ class TrainPage extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
-              _buildDestinationCard('Jakarta', 'assets/jakarta.jpg'),
+              DestinationCard(city: 'Jakarta', imagePath: 'assets/kota/jakarta.png',),
               SizedBox(height: 8),
-              _buildDestinationCard('Bandung', 'assets/bandung.jpg'),
+              DestinationCard(city: 'Bandung', imagePath: 'assets/kota/bandung.png',),
               SizedBox(height: 8),
-              _buildDestinationCard('Yogyakarta', 'assets/yogyakarta.jpg'),
+              DestinationCard(city: 'Yogyakarta', imagePath: 'assets/kota/yogyakarta.png',),
             ],
           ),
         ),
@@ -85,41 +92,6 @@ class TrainPage extends StatelessWidget {
         SizedBox(height: 8),
         Text(label),
       ],
-    );
-  }
-
-  Widget _buildDestinationCard(String city, String imagePath) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Stack(
-          children: [
-            Image.asset(
-              imagePath,
-              height: 150,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            Positioned(
-              bottom: 10,
-              left: 10,
-              child: Text(
-                city,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  backgroundColor: Colors.black38,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
