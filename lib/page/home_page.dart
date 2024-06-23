@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/theme.dart';
+import '../widget/destination.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -254,7 +255,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 150,
+              height: 250,
               width: double.infinity,
               child: ListView.builder(
                 padding: const EdgeInsets.only(left: 8, right: 8),
@@ -274,12 +275,9 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 8),
-                        Image.asset(
-                          'assets/logo_kai.png',
-                          height: 80,
-                          width: 120,
-                          fit: BoxFit.fill,
-                        ),
+                      DestinationCard( city: 'Jakarta', imagePath: 'assets/kota/jakarta.png',),
+                        const SizedBox(height: 8),
+
                         const SizedBox(height: 8),
                         const Text(
                           'Promo',
