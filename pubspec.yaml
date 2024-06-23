@@ -58,6 +58,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/kota/
+    - assets/promo/wisata/
+    - assets/promo/hotel/
     - assets/kai_pay.png
     - assets/logo_kai.png
 
