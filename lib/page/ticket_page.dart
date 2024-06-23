@@ -1,102 +1,147 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/theme.dart';
 
 class TicketPage extends StatelessWidget {
   const TicketPage({super.key});
-
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Tiket Saya',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text('Semua tiket kereta yang sudah aktif dan menunggu pembayaran'),
-              SizedBox(height: 16),
-              _buildServiceSection(),
-              SizedBox(height: 16),
-              _buildTicketTabSection(),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-               
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                ),
-                child: Center(
-                  child: Text(
-                    'CEK & TAMBAH TIKET',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              _buildTicketCard(
-                'I2E7M8Z',
-                'SENJA UTAMA YK',
-                'EKONOMI (CB)',
-                'No Kereta 140',
-                'PASARSENEN (PSE)',
-                'Jumat 28 Juni 2024',
-                'YOGYAKARTA (YK)',
-                'Sabtu 29 Juni 2024',
-                '19:05',
-                '02:35',
-              ),
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title:const Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tiket Saya',
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Beranda',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.train),
-            label: 'Kereta',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.confirmation_number),
-            label: 'Tiket Saya',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_offer),
-            label: 'Promo',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Akun',
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.receipt_long, color: Colors.black),
+            onPressed: () {},
           ),
         ],
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xFF6D6AFF), Color(0xFFB443F3)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Semua tiket kereta yang sudah aktif dan menunggu pembayaran',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildServiceIcon('RailFood', Icons.fastfood, Colors.pink),
+                      _buildServiceIcon('Taksi', Icons.local_taxi, Colors.blue),
+                      _buildServiceIcon('Bus', Icons.directions_bus, Colors.teal),
+                      _buildServiceIcon('Hotel', Icons.hotel, Colors.purple),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Tiket & Layanan Saya'),
+                  SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildCategoryChip('Semua', true),
+                      _buildCategoryChip('Antar Kota', false),
+                      _buildCategoryChip('Bandara', false),
+                      _buildCategoryChip('Lokal', false),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'CEK & TAMBAH TIKET',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  _buildTicketCard ( 
+                    'I2E7M8Z', 
+                    'SENJA UTAMA YK', 
+                    'EKONOMI (CB)',
+                    'No Kereta 140',
+                    'PASARSENEN (PSE)',
+                    'Jumat 28 Juni 2024',
+                    'YOGYAKARTA (YK)',
+                    'Sabtu 29 Juni 2024',
+                    '19:05',
+                    '02:35',
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+     
     );
   }
 
-  Widget _buildServiceSection() {
+  Widget _buildServiceIcon(String title, IconData icon, Color color) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Layanan Tambahan untuk perjalanan kamu',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        CircleAvatar(
+          backgroundColor: color,
+          child: Icon(icon, color: Colors.white),
         ),
         SizedBox(height: 8),
+        Text(
+          title,
+          style: TextStyle(color: Colors.white),
+        ),
       ],
     );
   }
 
-  Widget _buildTicketTabSection() {
+  Widget _buildCategoryChip(String label, bool selected) {
+    return ChoiceChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (bool selected) {},
+      selectedColor: Colors.blue.shade100,
+    );
+  }
+
+ Widget _buildTicketTabSection() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
