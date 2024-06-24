@@ -1,12 +1,12 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:myapp/page/home_page.dart';
-import 'package:myapp/page/profile_page.dart';
-import 'package:myapp/page/promo_page.dart';
-import 'package:myapp/page/ticket_page.dart';
-import 'package:myapp/page/train_page.dart';
+import 'package:myapp/page/bottom/home_page.dart';
+import 'package:myapp/page/bottom/profile_page.dart';
+import 'package:myapp/page/bottom/promo_page.dart';
+import 'package:myapp/page/bottom/ticket_page.dart';
+import 'package:myapp/page/bottom/train_page.dart';
 import 'package:myapp/theme/theme.dart';
-import '../page/train_ticket_screen.dart';
+import '../page/bottom/train_ticket_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   BottomNavbar({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../theme/theme.dart';
-import '../widget/destination.dart';
+import '../../theme/theme.dart';
+import '../../widget/destination.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -115,7 +115,15 @@ class HomePage extends StatelessWidget {
                   'LRT',
                   Colors.purple,
                 ),
-                _buildServiceIcon(
+               
+              ],
+            ),
+            GridView.count(crossAxisCount:
+              4,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                 _buildServiceIcon(
                   context,
                   Icons.hotel,
                   'Hotel',
@@ -145,7 +153,7 @@ class HomePage extends StatelessWidget {
                   'PLN',
                   Colors.blue,
                 ),
-              ],
+              ]
             ),
             Container(
               height: 120,
