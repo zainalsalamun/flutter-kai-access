@@ -74,6 +74,9 @@ class TicketPage extends StatelessWidget {
                       _buildCategoryChip('Antar Kota', false),
                       _buildCategoryChip('Bandara', false),
                       _buildCategoryChip('Lokal', false),
+_buildCategoryChip('Lokal', false),
+    _buildCategoryChip('Lokal', false),
+    _buildCategoryChip('Lokal', false),
                     ],
                   ),
                   SizedBox(height: 16),
@@ -149,6 +152,8 @@ class TicketPage extends StatelessWidget {
         _buildTabItem('Antar Kota', false),
         _buildTabItem('Bandara', false),
         _buildTabItem('Lokal', false),
+                _buildTabItem('Lokal', false),
+                _buildTabItem('Lokal', false),
       ],
     );
   }
