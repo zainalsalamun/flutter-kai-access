@@ -37,9 +37,18 @@ class HomePage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset(
-                  'assets/kai_pay.png',
-                  height: 35,
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/kai-pay');
+                      },
+                      child: Image.asset(
+                        'assets/kai_pay.png',
+                        height: 35,
+                      ),
+                    ),
+                  ],
                 ),
                 const Spacer(),
                 IconButton(
