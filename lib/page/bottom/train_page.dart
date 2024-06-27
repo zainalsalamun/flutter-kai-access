@@ -28,18 +28,23 @@ class TrainPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+             const  Text(
                 'Layanan Kereta dari KAI',
                 style: TextStyle(color: Colors.grey),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildServiceIcon(
-                    FontAwesomeIcons.train,
-                    'Antar Kota',
-                    Colors.blue,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/antar-kota');
+                    },
+                    child: _buildServiceIcon(
+                      FontAwesomeIcons.train,
+                      'Antar Kota',
+                      Colors.blue,
+                    ),
                   ),
                   _buildServiceIcon(
                     FontAwesomeIcons.subway,
