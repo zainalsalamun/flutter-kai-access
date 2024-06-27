@@ -6,7 +6,6 @@ import 'package:myapp/page/bottom/promo_page.dart';
 import 'package:myapp/page/bottom/ticket_page.dart';
 import 'package:myapp/page/bottom/train_page.dart';
 import 'package:myapp/theme/theme.dart';
-import '../page/bottom/train_ticket_screen.dart';
 
 class BottomNavbar extends StatefulWidget {
   BottomNavbar({super.key});
@@ -22,7 +21,7 @@ class _BottomNavbar extends State<BottomNavbar> {
       body: IndexedStack(
         index: widget.currentIndex,
         alignment: Alignment.topCenter,
-        children: [
+        children: const [
           HomePage(),
           TrainPage(),
           TicketPage(),
