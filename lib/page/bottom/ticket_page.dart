@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../theme/theme.dart';
+
 
 class TicketPage extends StatelessWidget {
   const TicketPage({super.key});
@@ -22,7 +21,7 @@ class TicketPage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.receipt_long, color: Colors.black),
+            icon: const Icon(Icons.receipt_long, color: Colors.black),
             onPressed: () {},
           ),
         ],
@@ -33,7 +32,7 @@ class TicketPage extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF6D6AFF), Color(0xFFB443F3)],
                   begin: Alignment.topLeft,
@@ -43,11 +42,11 @@ class TicketPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Semua tiket kereta yang sudah aktif dan menunggu pembayaran',
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 16),
+                 const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,8 +64,8 @@ class TicketPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Tiket & Layanan Saya'),
-                  SizedBox(height: 8),
+                  const Text('Tiket & Layanan Saya'),
+                  const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -79,24 +78,24 @@ _buildCategoryChip('Lokal', false),
     _buildCategoryChip('Lokal', false),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'CEK & TAMBAH TIKET',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildTicketCard ( 
                     'I2E7M8Z', 
                     'SENJA UTAMA YK', 
@@ -126,10 +125,10 @@ _buildCategoryChip('Lokal', false),
           backgroundColor: color,
           child: Icon(icon, color: Colors.white),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           title,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
       ],
     );
@@ -161,7 +160,7 @@ _buildCategoryChip('Lokal', false),
   Widget _buildTabItem(String title, bool isSelected) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: isSelected ? Colors.blueAccent : Colors.white,
@@ -206,77 +205,77 @@ _buildCategoryChip('Lokal', false),
               children: [
                 Text(
                   'Kode Pemesanan $kodePemesan',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
                   decoration: BoxDecoration(
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Antar Kota',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               children: [
                 Text(
                   namaKereta,
-                  style: TextStyle(
+                  style:const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Image.asset(
                   'assets/logo_kai.png',
                   height: 24,
                 ),
               ],
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text('$kelas • $noKereta'),
-            Divider(height: 24),
+            const Divider(height: 24),
             Row(
               children: [
 
-                SizedBox(width: 8),
+               const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Berangkat'),
-                    Text(
+                   const Text('Berangkat'),
+                     Text(
                       '$stasiunAsal',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
                       '$tanggalBerangkat, $jamBerangkat',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Tiba'),
+                   const Text('Tiba'),
                     Text(
                       '$stasiunTujuan',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
                       '$tanggalSampai, $jamSampai',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
