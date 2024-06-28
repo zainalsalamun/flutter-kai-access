@@ -17,13 +17,13 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'Kereta Antar Kota',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon:const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -104,8 +104,8 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
         Row(
           children: [
             Icon(icon, color: Colors.blue),
-            SizedBox(width: 8),
-            Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(width: 8),
+            Text(title, style:const TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
         Text(placeholder, style: TextStyle(color: Colors.grey)),
@@ -140,7 +140,7 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
           children: [
             Icon(icon, color: Colors.blue),
             const SizedBox(width: 8),
-            Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
         showToggle
