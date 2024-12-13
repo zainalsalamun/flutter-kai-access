@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 class TicketPage extends StatelessWidget {
   const TicketPage({super.key});
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title:const Row(
+        title: const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -46,13 +45,15 @@ class TicketPage extends StatelessWidget {
                     'Semua tiket kereta yang sudah aktif dan menunggu pembayaran',
                     style: TextStyle(color: Colors.white),
                   ),
-                 const SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildServiceIcon('RailFood', Icons.fastfood, Colors.pink),
+                      _buildServiceIcon(
+                          'RailFood', Icons.fastfood, Colors.pink),
                       _buildServiceIcon('Taksi', Icons.local_taxi, Colors.blue),
-                      _buildServiceIcon('Bus', Icons.directions_bus, Colors.teal),
+                      _buildServiceIcon(
+                          'Bus', Icons.directions_bus, Colors.teal),
                       _buildServiceIcon('Hotel', Icons.hotel, Colors.purple),
                     ],
                   ),
@@ -66,17 +67,33 @@ class TicketPage extends StatelessWidget {
                 children: [
                   const Text('Tiket & Layanan Saya'),
                   const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildCategoryChip('Semua', true),
-                      _buildCategoryChip('Antar Kota', false),
-                      _buildCategoryChip('Bandara', false),
-                      _buildCategoryChip('Lokal', false),
-_buildCategoryChip('Lokal', false),
-    _buildCategoryChip('Lokal', false),
-    _buildCategoryChip('Lokal', false),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildCategoryChip('Semua', true),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        _buildCategoryChip('Antar Kota', false),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        _buildCategoryChip('Bandara', false),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        _buildCategoryChip('Lokal', false),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        _buildCategoryChip('Lokal', false),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
@@ -96,9 +113,9 @@ _buildCategoryChip('Lokal', false),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  _buildTicketCard ( 
-                    'I2E7M8Z', 
-                    'SENJA UTAMA YK', 
+                  _buildTicketCard(
+                    'I2E7M8Z',
+                    'SENJA UTAMA YK',
                     'EKONOMI (CB)',
                     'No Kereta 140',
                     'PASARSENEN (PSE)',
@@ -114,7 +131,6 @@ _buildCategoryChip('Lokal', false),
           ],
         ),
       ),
-     
     );
   }
 
@@ -135,15 +151,18 @@ _buildCategoryChip('Lokal', false),
   }
 
   Widget _buildCategoryChip(String label, bool selected) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: selected,
-      onSelected: (bool selected) {},
-      selectedColor: Colors.blue.shade100,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: ChoiceChip(
+        label: Text(label),
+        selected: selected,
+        onSelected: (bool selected) {},
+        selectedColor: Colors.blue.shade100,
+      ),
     );
   }
 
- Widget _buildTicketTabSection() {
+  Widget _buildTicketTabSection() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -151,8 +170,6 @@ _buildCategoryChip('Lokal', false),
         _buildTabItem('Antar Kota', false),
         _buildTabItem('Bandara', false),
         _buildTabItem('Lokal', false),
-                _buildTabItem('Lokal', false),
-                _buildTabItem('Lokal', false),
       ],
     );
   }
@@ -167,12 +184,26 @@ _buildCategoryChip('Lokal', false),
           border: Border.all(color: Colors.blueAccent),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-              color: isSelected ? Colors.white : Colors.blueAccent,
-              fontWeight: FontWeight.bold,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.blueAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              if (isSelected)
+                const Padding(
+                  padding: EdgeInsets.only(left: 4.0),
+                  child: Icon(
+                    Icons.check,
+                    size: 16,
+                    color: Colors.white,
+                  ),
+                ),
+            ],
           ),
         ),
       ),
@@ -209,7 +240,8 @@ _buildCategoryChip('Lokal', false),
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 8.0),
                   decoration: BoxDecoration(
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(20),
@@ -226,7 +258,7 @@ _buildCategoryChip('Lokal', false),
               children: [
                 Text(
                   namaKereta,
-                  style:const TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -243,13 +275,12 @@ _buildCategoryChip('Lokal', false),
             const Divider(height: 24),
             Row(
               children: [
-
-               const SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   const Text('Berangkat'),
-                     Text(
+                    const Text('Berangkat'),
+                    Text(
                       '$stasiunAsal',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -268,7 +299,7 @@ _buildCategoryChip('Lokal', false),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   const Text('Tiba'),
+                    const Text('Tiba'),
                     Text(
                       '$stasiunTujuan',
                       style: const TextStyle(fontWeight: FontWeight.bold),
