@@ -11,10 +11,7 @@ This project is a starting point for a Flutter application.
 - Flutter
 
 ## Screenshots 
- <img src="./assets/screenshot/home.png" width="22%" />
- <img src="./assets/screenshot/home2.png" width="22%"/>
- <img src="./assets/screenshot/kereta.png" width="22%"/>
- <img src="./assets/screenshot/tiketsaya.png" width="22%"/>
+ <img src="./assets/screenshot/home.png" width="22%" /> <img src="./assets/screenshot/home2.png" width="22%"/> <img src="./assets/screenshot/kereta.png" width="22%"/> <img src="./assets/screenshot/tiketsaya.png" width="22%"/>
  <img src="./assets/screenshot/promo.png" width="22%"/>
 
 
