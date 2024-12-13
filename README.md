@@ -12,8 +12,11 @@ This project is a starting point for a Flutter application.
 
 ## Screenshots 
  <p align="center">
- <img src="./assets/screenshot/home.png"> 
- <img src="./assets/screenshot/home2.png"> 
+ <img src="./assets/screenshot/home.png"> width="22%"
+ <img src="./assets/screenshot/home2.png"> width="22%"
+ <img src="./assets/screenshot/kereta.png"> width="22%"
+   <img src="./assets/screenshot/tiketsaya.png"> width="22%"
+   <img src="./assets/screenshot/promo.png"> width="22%"
  </p>
 
 A few resources to get you started if this is your first Flutter project:
