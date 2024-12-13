@@ -7,16 +7,18 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-             const SizedBox(height: 50),
+              const SizedBox(height: 50),
               _buildProfileSection(),
               const SizedBox(height: 16),
-              _buildMenuItem(Icons.lock, 'Ganti Kata Sandi', ),
+              _buildMenuItem(
+                Icons.lock,
+                'Ganti Kata Sandi',
+              ),
               _buildDivider(),
               _buildMenuItem(Icons.history, 'Riwayat Transaksi'),
               _buildDivider(),
@@ -24,7 +26,7 @@ class ProfilePage extends StatelessWidget {
               _buildDivider(),
               _buildMenuItem(Icons.group, 'Daftar Penumpang'),
               _buildDivider(),
-                _buildMenuItem(Icons.face, 'Registrasi Face Recognition'),
+              _buildMenuItem(Icons.face, 'Registrasi Face Recognition'),
               _buildDivider(),
               _buildMenuItem(Icons.credit_card, 'Metode Pembayaran Saya'),
               _buildDivider(),
@@ -39,13 +41,12 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 16),
               const Text('Versi 1.0.0', style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 16),
-              const Text('Copyright © 2023 Access.', style: TextStyle(color: Colors.grey)),
+              const Text('Copyright © 2023 Access.',
+                  style: TextStyle(color: Colors.grey)),
             ],
           ),
-          
         ),
       ),
-     
     );
   }
 
@@ -56,14 +57,13 @@ class ProfilePage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-
-      child:  Padding(
-        padding:  const EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             const Row(
               children: [
-                 CircleAvatar(
+                CircleAvatar(
                   radius: 24,
                   backgroundColor: Colors.orange,
                   child: Text(
@@ -81,34 +81,32 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             Text(
                               'ZAINAL',
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 4),
                             Text(
-                              'Premium Member | APH312',
+                              'Premium Member | 009823733',
                               style: TextStyle(color: Colors.grey),
                             ),
                           ],
                         ),
                       ],
                     ),
-                    
                     SizedBox(height: 30)
                   ],
                 ),
-                
-               
-               
               ],
             ),
-              Row(
-                  children: [
+            Row(
+              children: [
                 ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.person),
                   label: const Text('Lihat Profile'),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black, backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -117,15 +115,14 @@ class ProfilePage extends StatelessWidget {
                   icon: const Icon(Icons.qr_code),
                   label: const Text('QR code'),
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black, backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
                   ),
                 ),
               ],
-                ),
+            ),
           ],
         ),
-
-      
       ),
     );
   }
@@ -133,7 +130,10 @@ class ProfilePage extends StatelessWidget {
   Widget _buildMenuItem(IconData icon, String title) {
     return ListTile(
       leading: Icon(icon),
-      title: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+      ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {},
     );
