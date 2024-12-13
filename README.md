@@ -6,6 +6,16 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
+## Making
+- UI KAI Access
+- Flutter
+
+## Screenshots 
+ <p align="center">
+ <img src="./assets/screenshot/home.png"> 
+ <img src="./assets/screenshot/home2.png"> 
+ </p>
+
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
