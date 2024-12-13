@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class PagePilihMakanan extends StatelessWidget {
   const PagePilihMakanan({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +59,7 @@ class PagePilihMakanan extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.fastfood, size: 100, color: Colors.grey),
+                  Icon(Icons.fastfood, size: 100, color: Colors.blue),
                   SizedBox(height: 16.0),
                   Text(
                     'Langsung pesan makanan & minuman untuk dikonsumsi dalam kereta agar perjalanan kamu lebih nyaman.',
@@ -71,15 +71,15 @@ class PagePilihMakanan extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              
               onPressed: () {},
-              child: Text('PILIH MAKANAN & MINUMAN', style: TextStyle(color: Colors.white)),
+              child: Text('PILIH MAKANAN & MINUMAN',
+                  style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16),
                 minimumSize: Size(double.infinity, 50),
               ),
             ),
