@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/theme.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -7,119 +7,170 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 50),
-              _buildProfileSection(),
-              const SizedBox(height: 16),
-              _buildMenuItem(
-                Icons.lock,
-                'Ganti Kata Sandi',
-              ),
-              _buildDivider(),
-              _buildMenuItem(Icons.history, 'Riwayat Transaksi'),
-              _buildDivider(),
-              _buildMenuItem(FontAwesomeIcons.gem, 'Member Benefit'),
-              _buildDivider(),
-              _buildMenuItem(Icons.group, 'Daftar Penumpang'),
-              _buildDivider(),
-              _buildMenuItem(Icons.face, 'Registrasi Face Recognition'),
-              _buildDivider(),
-              _buildMenuItem(Icons.credit_card, 'Metode Pembayaran Saya'),
-              _buildDivider(),
-              _buildMenuItem(Icons.help, 'Pusat Bantuan'),
-              _buildDivider(),
-              _buildMenuItem(Icons.settings, 'Tentang Access'),
-              _buildDivider(),
-              _buildMenuItem(Icons.language, 'Bahasa'),
-              _buildDivider(),
-              _buildMenuItem(Icons.logout, 'Keluar'),
-              _buildDivider(),
-              const SizedBox(height: 16),
-              const Text('Versi 1.0.0', style: TextStyle(color: Colors.grey)),
-              const SizedBox(height: 16),
-              const Text('Copyright © 2023 Access.',
-                  style: TextStyle(color: Colors.grey)),
-            ],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'Akun',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            _buildProfileCard(),
+            const SizedBox(height: 20),
+            _buildMenuSection(),
+            const SizedBox(height: 20),
+            _buildAppInfo(),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildProfileSection() {
-    return Card(
-      elevation: 4,
-      shadowColor: Colors.grey,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+  Widget _buildProfileCard() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [primaryColor, const Color(0xFF9C27B0)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: primaryColor.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Row(
-              children: [
-                CircleAvatar(
-                  radius: 24,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 2),
+                ),
+                child: CircleAvatar(
+                  radius: 32,
                   backgroundColor: Colors.orange,
-                  child: Text(
+                  child: const Text(
                     'Z',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                SizedBox(width: 16),
-                Column(
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'ZAINAL',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              'Premium Member | 009823733',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                      ],
+                    const Text(
+                      'ZAINAL',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                    SizedBox(height: 30)
+                    const SizedBox(height: 4),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.verified_user,
+                            color: Colors.white,
+                            size: 14,
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            'Premium Member',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.person),
-                  label: const Text('Lihat Profile'),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.qr_code),
-                  label: const Text('QR code'),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Colors.white,
-                  ),
-                ),
-              ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              _buildQuickAction(
+                Icons.person_outline,
+                'Lihat Profile',
+                Colors.white,
+              ),
+              const SizedBox(width: 12),
+              _buildQuickAction(
+                Icons.qr_code,
+                'QR Code',
+                Colors.white,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuickAction(IconData icon, String label, Color color) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 20),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ],
         ),
@@ -127,22 +178,97 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title) {
+  Widget _buildMenuSection() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          _buildMenuItem(Icons.lock_outline, 'Ganti Kata Sandi'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.history, 'Riwayat Transaksi'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.card_membership, 'Member Benefit'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.group_outlined, 'Daftar Penumpang'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.face_retouching_natural, 'Registrasi Face ID'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.credit_card_outlined, 'Metode Pembayaran'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.help_outline, 'Pusat Bantuan'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.info_outline, 'Tentang Access'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.language, 'Bahasa'),
+          _buildMenuDivider(),
+          _buildMenuItem(Icons.logout, 'Keluar', isLogout: true),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(IconData icon, String title, {bool isLogout = false}) {
     return ListTile(
-      leading: Icon(icon),
+      leading: Icon(
+        icon,
+        color: isLogout ? Colors.red : Colors.grey[700],
+      ),
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: isLogout ? Colors.red : Colors.grey[800],
+        ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: isLogout ? Colors.red : Colors.grey[400],
+      ),
       onTap: () {},
     );
   }
 
-  Widget _buildDivider() {
-    return const Divider(
+  Widget _buildMenuDivider() {
+    return Divider(
       thickness: 1,
-      height: 0,
+      height: 1,
+      indent: 56,
+      color: Colors.grey[200],
+    );
+  }
+
+  Widget _buildAppInfo() {
+    return Column(
+      children: [
+        Text(
+          'Versi 1.0.0',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey[500],
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Copyright © 2024 Access.',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey[500],
+          ),
+        ),
+      ],
     );
   }
 }
