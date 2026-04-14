@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/theme.dart';
 
 class AntarKotaPage extends StatefulWidget {
   const AntarKotaPage({super.key});
@@ -19,11 +20,14 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
         elevation: 0,
         title: const Text(
           'Kereta Antar Kota',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
-          icon:const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -40,23 +44,25 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
               const SizedBox(height: 16),
               _buildPassengerCard(),
               const SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding:const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: GestureDetector(
-                  onTap: () {
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
                     Navigator.pushNamed(context, '/jadwal-kereta');
                   },
-                  child: const Center(
-                    child: Text(
-                      'CARI TIKET ANTAR KOTA',
-                      style: TextStyle(color: Colors.white),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'CARI TIKET ANTAR KOTA',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -69,27 +75,37 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
   }
 
   Widget _buildLocationCard(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/list-tujuan');
-              },
-              child: _buildLocationRow('Dari', FontAwesomeIcons.train, 'Dari'),
+            _buildLocationTile(
+              context,
+              'Dari',
+              Icons.trip_origin,
+              'Pilih Stasiun',
+              () => Navigator.pushNamed(context, '/list-tujuan'),
             ),
             const Divider(),
-            GestureDetector(
-              onTap: () {
-               Navigator.pushNamed(context, '/list-tujuan');
-              },
-              child: _buildLocationRow('Ke', FontAwesomeIcons.train, 'Ke'),
+            _buildLocationTile(
+              context,
+              'Ke',
+              Icons.place,
+              'Pilih Tujuan',
+              () => Navigator.pushNamed(context, '/list-tujuan'),
             ),
           ],
         ),
@@ -97,93 +113,194 @@ class _AntarKotaPageState extends State<AntarKotaPage> {
     );
   }
 
-  Widget _buildLocationRow(String title, IconData icon, String placeholder) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Icon(icon, color: Colors.blue),
-            const SizedBox(width: 8),
-            Text(title, style:const TextStyle(fontWeight: FontWeight.bold)),
-          ],
-        ),
-        Text(placeholder, style: TextStyle(color: Colors.grey)),
-      ],
+  Widget _buildLocationTile(
+    BuildContext context,
+    String title,
+    IconData icon,
+    String hint,
+    VoidCallback onTap,
+  ) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: primaryColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: primaryColor, size: 20),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[500],
+                  ),
+                ),
+                Text(
+                  hint,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.grey[400],
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildDateCard() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            _buildDateRow('Tanggal Pergi', FontAwesomeIcons.calendarAlt, 'Rab, 26 Jun 2024', true),
+            _buildDateRow(
+              'Tanggal Pergi',
+              Icons.calendar_today,
+              'Rab, 26 Jun 2024',
+              true,
+            ),
             const Divider(),
-            _buildDateRow('Tanggal Pulang', FontAwesomeIcons.calendarAlt, 'Rab, 26 Jun 2024', isRoundTrip),
+            _buildDateRow(
+              'Tanggal Pulang',
+              Icons.calendar_today,
+              'Rab, 26 Jun 2024',
+              isRoundTrip,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDateRow(String title, IconData icon, String date, bool showToggle) {
+  Widget _buildDateRow(
+      String title, IconData icon, String date, bool showToggle) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            Icon(icon, color: Colors.blue),
-            const SizedBox(width: 8),
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-          ],
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: primaryColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(icon, color: primaryColor, size: 20),
         ),
-        showToggle
-            ? Row(
-                children: [
-                  Text(date),
-                  Switch(
-                    value: isRoundTrip,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isRoundTrip = value;
-                      });
-                    },
-                  ),
-                ],
-              )
-            : Text(
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        if (showToggle)
+          Row(
+            children: [
+              Text(
                 date,
-                style: TextStyle(color: isRoundTrip ? Colors.black : Colors.grey),
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
               ),
+              Switch(
+                value: isRoundTrip,
+                onChanged: (bool value) {
+                  setState(() {
+                    isRoundTrip = value;
+                  });
+                },
+                activeColor: primaryColor,
+              ),
+            ],
+          )
+        else
+          Text(
+            date,
+            style: TextStyle(
+              color: isRoundTrip ? Colors.black : Colors.grey,
+            ),
+          ),
       ],
     );
   }
 
   Widget _buildPassengerCard() {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
-      child: const Padding(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Icon(FontAwesomeIcons.user, color: Colors.blue),
-                SizedBox(width: 8),
-                Text('Penumpang', style: TextStyle(fontWeight: FontWeight.bold)),
-              ],
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: primaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(FontAwesomeIcons.user, color: primaryColor, size: 20),
             ),
-            Text('1 Dewasa', style: TextStyle(color: Colors.grey)),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Penumpang',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    '1 Dewasa',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Colors.grey[400],
+            ),
           ],
         ),
       ),
