@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../theme/theme.dart';
-import '../../widget/destination.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,23 +9,27 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
+        elevation: 0,
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Selamat Siang',
-              style: TextStyle(fontSize: 14),
+              style: TextStyle(fontSize: 14, color: Colors.white70),
             ),
             Text(
               'ZAINAL',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             SizedBox(height: 8)
           ],
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
             onPressed: () {},
           ),
         ],
@@ -34,67 +37,129 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Top Action Row
             Row(
               children: [
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/kai-pay');
-                      },
-                      child: Image.asset(
-                        'assets/kai_pay.png',
-                        height: 35,
-                      ),
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/kai-pay');
+                  },
+                  child: Image.asset(
+                    'assets/kai_pay.png',
+                    height: 35,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.qr_code_scanner),
+                  icon: const Icon(Icons.qr_code_scanner, color: primaryColor),
                   onPressed: () {},
                 ),
                 IconButton(
-                  icon: const Icon(Icons.account_balance_wallet),
+                  icon: const Icon(Icons.account_balance_wallet,
+                      color: primaryColor),
                   onPressed: () {},
                 ),
                 IconButton(
-                  icon: const Icon(Icons.history),
+                  icon: const Icon(Icons.history, color: primaryColor),
                   onPressed: () {},
                 ),
               ],
             ),
             const SizedBox(height: 16),
+
+            // RailPoin & Premium Row
             Row(
               children: [
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    color: Colors.amber,
-                    child: const Column(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [primaryColor, primaryColor.withOpacity(0.7)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('0 RailPoin'),
-                        Icon(Icons.star),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '0 RailPoin',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Tukarkan poin',
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.white70),
+                            ),
+                          ],
+                        ),
+                        Icon(Icons.star, color: Colors.amber, size: 28),
                       ],
                     ),
                   ),
                 ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    color: Colors.grey[200],
-                    child: const Column(
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.amber, width: 1.5),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Premium'),
-                        Icon(Icons.verified_user),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Premium',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.amber,
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              'Member Gold',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                        Icon(Icons.verified_user,
+                            color: Colors.amber, size: 28),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
+
+            // Services Grid
+            Text(
+              'Layanan',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[800]),
+            ),
+            const SizedBox(height: 12),
             GridView.count(
               crossAxisCount: 4,
               shrinkWrap: true,
@@ -115,7 +180,7 @@ class HomePage extends StatelessWidget {
                 _buildServiceIcon(
                   context,
                   Icons.directions_railway,
-                  'Commuter Line',
+                  'Commuter',
                   Colors.red,
                 ),
                 _buildServiceIcon(
@@ -124,266 +189,375 @@ class HomePage extends StatelessWidget {
                   'LRT',
                   Colors.purple,
                 ),
-               
               ],
             ),
-            GridView.count(crossAxisCount:
-              4,
+            GridView.count(
+              crossAxisCount: 4,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                 _buildServiceIcon(
+                _buildServiceIcon(
                   context,
                   Icons.hotel,
                   'Hotel',
-                  Colors.blue,
+                  Colors.teal,
                 ),
                 _buildServiceIcon(
                   context,
                   Icons.local_shipping,
                   'KAI Logistik',
-                  Colors.blue,
+                  Colors.brown,
                 ),
                 _buildServiceIcon(
                   context,
                   Icons.phone_android,
                   'Pulsa',
-                  Colors.blue,
+                  Colors.green,
                 ),
                 _buildServiceIcon(
                   context,
                   Icons.videogame_asset,
-                  'Games & Entertainment',
-                  Colors.blue,
+                  'Games',
+                  Colors.indigo,
                 ),
                 _buildServiceIcon(
                   context,
-                  Icons.flash_on,
+                  Icons.bolt,
                   'PLN',
-                  Colors.blue,
+                  Colors.amber[800]!,
                 ),
-              ]
+              ],
             ),
+            const SizedBox(height: 16),
+
+            // Trip Planner Card
             Container(
               height: 120,
               width: double.infinity,
-              margin: const EdgeInsets.only(top: 16), 
               decoration: BoxDecoration(
-                color: Colors.blueAccent[100],
-                borderRadius: BorderRadius.circular(8),
+                gradient: LinearGradient(
+                  colors: [primaryColor, Color(0xFF9C27B0)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: primaryColor.withOpacity(0.3),
                     spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
                   ),
                 ],
-               
               ),
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset(
                     'assets/logo_kai.png',
-                    height: 80,
-                    width: 120,
+                    height: 70,
+                    width: 100,
                     fit: BoxFit.fill,
                   ),
-                   const Text(
-                    'Trip Planner',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  const Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'Trip Planner',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Text(
+                          'Coba Sekarang',
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-              
             ),
-            const SizedBox(height: 16),
-            const Row(
+            const SizedBox(height: 24),
+
+            // Promo Section
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Promo',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
-                SizedBox(height: 8),
-                Column(
-                  children: [
-                    Text(
-                      'Lihat Semua',
-                      style: TextStyle(fontSize: 14, color: Colors.blue),
-                    ),
-                  ],
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Lihat Semua',
+                    style: TextStyle(color: primaryColor),
+                  ),
                 ),
               ],
             ),
             const SizedBox(height: 8),
             SizedBox(
-              height: 150,
-              width: double.infinity,
+              height: 160,
               child: ListView.builder(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(right: 8),
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 150,
-                    width: 250,
-                    margin: const EdgeInsets.only(right: 8),
+                    width: 260,
+                    margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
+                      gradient: LinearGradient(
+                        colors: [Colors.purple, Colors.pink],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Column(
+                    child: Stack(
                       children: [
-                        const SizedBox(height: 8),
-                        Image.asset(
-                          'assets/logo_kai.png',
-                          height: 80,
-                          width: 120,
-                          fit: BoxFit.fill,
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Text(
+                                'Promo Spesial',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              const Text(
+                                'Diskon up to 50%',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white70),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Promo',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Text(
+                              'HOT',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 16),
-                      ]
-                    )
-                    
+                      ],
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
             const SizedBox(height: 16),
+
+            // Tujuan Populer Section
             const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text (
+                Text(
                   'Tujuan Populer',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             SizedBox(
-              height: 250,
-              width: double.infinity,
+              height: 180,
               child: ListView.builder(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(right: 8),
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 150,
-                    width: 250,
-                    margin: const EdgeInsets.only(right: 8),
+                    width: 160,
+                    margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
                       children: [
-                        const SizedBox(height: 8),
-                      DestinationCard( city: 'Jakarta', imagePath: 'assets/kota/jakarta.png',),
-                        const SizedBox(height: 8),
-
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Promo',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        Expanded(
+                          flex: 2,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(12)),
+                            child: Image.asset(
+                              'assets/logo_kai.png',
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 16),
-                      ]
-                    )
-                    
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  index == 0
+                                      ? 'Jakarta'
+                                      : index == 1
+                                          ? 'Bandung'
+                                          : index == 2
+                                              ? 'Yogyakarta'
+                                              : '其他地方',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  'Mulai Rp 150rb',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.grey[600]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
-            const SizedBox(height: 8),
-            const Row(
+            const SizedBox(height: 16),
+
+            // RailPoin Section
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Tukarkan Railpoin mu sekarang',
+                const Text(
+                  'Tukarkan RailPoin',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Spacer(),
-                SizedBox(height: 16),
-                Column(
-                  children: [
-                    Text(
-                      'Lihat Semua',
-                      style: TextStyle(fontSize: 14, color: Colors.blue),
-                    ),
-                  ],
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Lihat Semua',
+                    style: TextStyle(color: primaryColor),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-             SizedBox(
-              height: 150,
-              width: double.infinity,
+            const SizedBox(height: 12),
+            SizedBox(
+              height: 140,
               child: ListView.builder(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(right: 8),
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 150,
-                    width: 250,
-                    margin: const EdgeInsets.only(right: 8),
+                    width: 160,
+                    margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey[200]!),
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 8),
-                        Image.asset(
-                          'assets/logo_kai.png',
-                          height: 80,
-                          width: 120,
-                          fit: BoxFit.fill,
+                        Icon(
+                          Icons.card_giftcard,
+                          size: 32,
+                          color: primaryColor,
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Promo',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        Text(
+                          'Voucher',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
                         ),
-                        const SizedBox(height: 16),
-                      ]
-                    )
-                    
+                        const SizedBox(height: 4),
+                        Text(
+                          '${500 + (index * 100)} Poin',
+                          style:
+                              TextStyle(fontSize: 12, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildServiceIcon(BuildContext context, IconData icon, String label, Color color) {
-    return Column(
-      children: [
-        CircleAvatar(
-          backgroundColor: color,
-          child: Icon(icon, color: Colors.white),
-        ),
-        const SizedBox(height: 8),
-        Text(label, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)),
-      ],
+  Widget _buildServiceIcon(
+      BuildContext context, IconData icon, String label, Color color) {
+    return InkWell(
+      onTap: () {},
+      borderRadius: BorderRadius.circular(12),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: color, size: 24),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[700]),
+          ),
+        ],
+      ),
     );
   }
 }
