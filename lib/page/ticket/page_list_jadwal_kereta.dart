@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../theme/theme.dart';
 
 class PageListJadwalKereta extends StatelessWidget {
   const PageListJadwalKereta({super.key});
@@ -9,6 +10,7 @@ class PageListJadwalKereta extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: Colors.grey[50],
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -16,11 +18,15 @@ class PageListJadwalKereta extends StatelessWidget {
             children: [
               Text(
                 'PASAR SENEN (PSE) ➜ YOGYAKARTA (YK)',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 4),
               Text(
                 'Rab, 26 Jun 2024 • 1 Dewasa',
-                style: TextStyle(color: Colors.grey, fontSize: 14),
+                style: TextStyle(color: Colors.grey, fontSize: 12),
               ),
             ],
           ),
@@ -31,22 +37,23 @@ class PageListJadwalKereta extends StatelessWidget {
               Navigator.pushNamed(context, '/antar-kota');
             },
           ),
-          bottom: const TabBar(
-            labelColor: Colors.black,
+          bottom: TabBar(
+            labelColor: primaryColor,
             unselectedLabelColor: Colors.grey,
-            indicatorColor: Colors.blue,
-            tabs: [
+            indicatorColor: primaryColor,
+            indicatorWeight: 3,
+            tabs: const [
               Tab(text: 'Rab, 26'),
               Tab(text: 'Kam, 27'),
               Tab(text: 'Jum, 28'),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             TrainListView(),
-             Center(child: Text('Kam, 27')),
-             Center(child: Text('Jum, 28')),
+            const Center(child: Text('Kam, 27')),
+            const Center(child: Text('Jum, 28')),
           ],
         ),
       ),
@@ -76,7 +83,7 @@ class TrainListView extends StatelessWidget {
             {'className': 'Eksekutif', 'price': 'Rp 650.000'},
           ],
         ),
-       const  SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTrainCard(
           context,
           trainName: 'SENJA UTAMA YK PRIORITY (140P)',
@@ -89,7 +96,7 @@ class TrainListView extends StatelessWidget {
             {'className': 'Priority', 'price': 'Rp 650.000'},
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTrainCard(
           context,
           trainName: 'BANGUNKARTA (124)',
@@ -99,7 +106,7 @@ class TrainListView extends StatelessWidget {
           duration: '07j 34m',
           isAvailable: false,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 12),
         _buildTrainCard(
           context,
           trainName: 'BOGOWONTO (136)',
@@ -124,15 +131,30 @@ class TrainListView extends StatelessWidget {
     List<Map<String, String>>? classes,
   }) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/pesan-tiket');
-      },
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+      onTap: isAvailable
+          ? () {
+              Navigator.pushNamed(context, '/pesan-tiket');
+            }
+          : null,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: ExpansionTile(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -143,35 +165,46 @@ class TrainListView extends StatelessWidget {
                       trainName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontSize: 15,
                         color: isAvailable ? Colors.black : Colors.grey,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    price,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: isAvailable ? Colors.black : Colors.red,
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: isAvailable ? primaryColor : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      price,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: isAvailable ? Colors.white : Colors.grey[600],
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Row(
                 children: [
-                  const Icon(FontAwesomeIcons.train, color: Colors.blue),
-                  const  SizedBox(width: 8),
+                  Icon(FontAwesomeIcons.train, color: primaryColor, size: 16),
+                  const SizedBox(width: 8),
                   Text(
                     departureTime,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 14),
                   ),
                   const SizedBox(width: 8),
-                  const Flexible(
+                  Expanded(
                     child: Text(
                       'PASARSENEN (PSE)',
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
                     ),
                   ),
                 ],
@@ -179,17 +212,20 @@ class TrainListView extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(FontAwesomeIcons.mapMarkerAlt, color: Colors.blue),
+                  Icon(FontAwesomeIcons.mapMarkerAlt,
+                      color: Colors.orange, size: 16),
                   const SizedBox(width: 8),
                   Text(
                     arrivalTime,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 14),
                   ),
                   const SizedBox(width: 8),
-                  const Flexible(
+                  Expanded(
                     child: Text(
                       'YOGYAKARTA (YK)',
                       overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
                     ),
                   ),
                 ],
@@ -197,22 +233,42 @@ class TrainListView extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(FontAwesomeIcons.clock, color: Colors.blue),
+                  Icon(FontAwesomeIcons.clock,
+                      color: Colors.grey[600], size: 16),
                   const SizedBox(width: 8),
-                  Text(duration),
+                  Text(
+                    duration,
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
                 ],
               ),
             ],
           ),
           children: classes != null
               ? classes.map((classInfo) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 12.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[50],
+                      border: Border(
+                        top: BorderSide(color: Colors.grey[200]!),
+                      ),
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(classInfo['className']!),
-                        Text(classInfo['price']!),
+                        Text(
+                          classInfo['className']!,
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        Text(
+                          classInfo['price']!,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
+                        ),
                       ],
                     ),
                   );
