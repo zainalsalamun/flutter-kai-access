@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/theme.dart';
 
 class PagePerlindunganExtra extends StatelessWidget {
   const PagePerlindunganExtra({super.key});
@@ -8,24 +9,34 @@ class PagePerlindunganExtra extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: const Text(
-          'Pesan Tiket',
-          style: TextStyle(color: Colors.black),
+          'Perlindungan Extra',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
         actions: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child:const Row(
+            child: Row(
               children: [
-                Icon(Icons.timer, color: Colors.black),
-                SizedBox(width: 4),
+                Icon(Icons.timer, color: primaryColor, size: 20),
+                const SizedBox(width: 4),
                 Text(
                   '00 : 06 : 35',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -36,106 +47,161 @@ class PagePerlindunganExtra extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-               const Text('Perlindungan Ekstra', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Switch(
-                  value: false,
-                  onChanged: (bool value) {},
+            // Header
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [primaryColor, const Color(0xFF9C27B0)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
-              ],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Row(
+                children: [
+                  Icon(Icons.shield, color: Colors.white, size: 32),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Tambahkan perlindungan extra untuk perjalanan yang lebih aman dan nyaman',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 16),
+
+            // Protection List
             Expanded(
               child: ListView(
                 children: [
-                  ProtectionCard(
+                  _buildProtectionCard(
                     title: 'Perlindungan Kecelakaan Diri',
-                    provider: 'PT Sompo Insuranc...',
-                    description: 'Kompensasi kecelakaan perjalanan hingga Rp.10.000.000',
+                    provider: 'PT Sompo Insurance',
+                    description:
+                        'Kompensasi kecelakaan perjalanan hingga Rp 10.000.000',
                     price: 'Rp4.500/Pax',
                     checked: true,
                   ),
-                  ProtectionCard(
+                  const SizedBox(height: 12),
+                  _buildProtectionCard(
                     title: 'Jaminan Refund 100%',
-                    provider: 'PT Mitra Jasa Prata...',
-                    description: 'Kompensasi Pembatalan perjalanan 100%',
+                    provider: 'PT Mitra Jasa Pratama',
+                    description: 'Kompensasi pembatalan perjalanan 100%',
                     price: 'Rp12.400/Pax',
                     checked: true,
                   ),
                 ],
               ),
             ),
+
+            // Total Price
             Container(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: const Column(
+              child: Column(
                 children: [
-                  Text('Total Harga', style: TextStyle(fontSize: 16)),
-                  Text('Rp 310.000', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  Text(
+                    'Total Harga',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Rp 310.000',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor,
+                    ),
+                  ),
                 ],
               ),
             ),
-            ElevatedButton(
+
+            // Continue Button
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
                 onPressed: () {
-                Navigator.pushNamed(context, '/pilih-makanan');
+                  Navigator.pushNamed(context, '/pilih-makanan');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  padding:const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
-                
-                  child:const Center(
-                    child: Text(
-                      'LANJUTKAN',
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  
+                child: const Text(
+                  'LANJUTKAN',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
+            ),
           ],
         ),
       ),
     );
   }
-}
 
-class ProtectionCard extends StatelessWidget {
-  final String title;
-  final String provider;
-  final String description;
-  final String price;
-  final bool checked;
-
-   ProtectionCard({
-    required this.title,
-    required this.provider,
-    required this.description,
-    required this.price,
-    this.checked = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
+  Widget _buildProtectionCard({
+    required String title,
+    required String provider,
+    required String description,
+    required String price,
+    required bool checked,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.grey.shade200,
-                child: const Icon(Icons.shield, color: Colors.grey),
+              contentPadding: EdgeInsets.zero,
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(Icons.shield, color: primaryColor),
               ),
-              title: Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              title: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               subtitle: Text('powered by $provider'),
               trailing: Switch(
                 value: checked,
                 onChanged: (bool value) {},
+                activeColor: primaryColor,
               ),
             ),
             Padding(
@@ -143,11 +209,30 @@ class ProtectionCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(description),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 13,
+                    ),
+                  ),
                   const SizedBox(height: 8.0),
-                  const Text('Lihat semua benefit', style: TextStyle(color: Colors.blue)),
+                  Text(
+                    'Lihat semua benefit',
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   const SizedBox(height: 8.0),
-                  Text('Harga mulai dari : $price'),
+                  Text(
+                    'Harga mulai dari : $price',
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
