@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../theme/theme.dart';
 
 class PageListTujuan extends StatelessWidget {
-   PageListTujuan({super.key});
-
+  PageListTujuan({super.key});
 
   final List<Map<String, String>> recentSearches = [
     {'name': 'WATES (WT)', 'location': 'KOTA YOGYAKARTA'},
@@ -23,45 +23,81 @@ class PageListTujuan extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon:const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {},
         ),
-        title:const  TextField(
-          decoration: InputDecoration(
-            hintText: 'Cari stasiun atau kota',
-            border: InputBorder.none,
+        title: Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Cari stasiun atau kota',
+              prefixIcon: Icon(Icons.search, color: Colors.grey[400]),
+              filled: true,
+              fillColor: Colors.grey[100],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            ),
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-           const Text(
-              'Terakhir dicari',
-              style: TextStyle(fontWeight: FontWeight.bold),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Text(
+            'Terakhir Dicari',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height: 16),
-            ...recentSearches.map((station) {
-              return Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      station['name']!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(station['location']!),
-                    trailing: const Icon(Icons.star_border),
-                    onTap: () {},
+          ),
+          const SizedBox(height: 16),
+          ...recentSearches.map((station) {
+            return Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
                   ),
-                  const Divider(),
                 ],
-              );
-            }),
-          ],
-        ),
+              ),
+              child: ListTile(
+                leading: Icon(
+                  Icons.train,
+                  color: primaryColor,
+                ),
+                title: Text(
+                  station['name']!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+                subtitle: Text(
+                  station['location']!,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                trailing: Icon(
+                  Icons.star_border,
+                  color: Colors.amber,
+                ),
+                onTap: () {},
+              ),
+            );
+          }),
+        ],
       ),
     );
   }
 }
-
