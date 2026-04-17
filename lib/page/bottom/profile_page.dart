@@ -8,19 +8,16 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: colorWhite,
         elevation: 0,
         title: const Text(
           'Akun',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.appBarTitle,
         ),
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings, color: Colors.black),
+            icon: const Icon(Icons.settings, color: textBlack),
             onPressed: () {},
           ),
         ],
@@ -46,7 +43,10 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [primaryColor, const Color(0xFF9C27B0)],
+          colors: [
+            const Color.fromARGB(255, 167, 138, 215),
+            const Color.fromARGB(255, 152, 71, 166)
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -68,18 +68,14 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 2),
+                  border: Border.all(color: colorWhite, width: 2),
                 ),
                 child: CircleAvatar(
                   radius: 32,
-                  backgroundColor: Colors.orange,
+                  backgroundColor: profileAvatarColor,
                   child: const Text(
                     'Z',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTextStyles.h3White,
                   ),
                 ),
               ),
@@ -90,11 +86,7 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     const Text(
                       'ZAINAL',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: AppTextStyles.h4White,
                     ),
                     const SizedBox(height: 4),
                     Container(
@@ -103,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: premiumBadgeColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Row(
@@ -111,17 +103,13 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.verified_user,
-                            color: Colors.white,
+                            color: colorWhite,
                             size: 14,
                           ),
                           SizedBox(width: 4),
                           Text(
                             'Premium Member',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                            style: AppTextStyles.badgeMedium,
                           ),
                         ],
                       ),
@@ -137,13 +125,13 @@ class ProfilePage extends StatelessWidget {
               _buildQuickAction(
                 Icons.person_outline,
                 'Lihat Profile',
-                Colors.white,
+                colorWhite,
               ),
               const SizedBox(width: 12),
               _buildQuickAction(
                 Icons.qr_code,
                 'QR Code',
-                Colors.white,
+                colorWhite,
               ),
             ],
           ),
@@ -157,7 +145,7 @@ class ProfilePage extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
+          color: colorWhite.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -181,7 +169,7 @@ class ProfilePage extends StatelessWidget {
   Widget _buildMenuSection() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: colorWhite,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -222,20 +210,17 @@ class ProfilePage extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: isLogout ? Colors.red : Colors.grey[700],
+        color: isLogout ? logoutColor : Colors.grey[700],
       ),
       title: Text(
         title,
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
-          color: isLogout ? Colors.red : Colors.grey[800],
-        ),
+        style:
+            isLogout ? AppTextStyles.bodyMediumRed : AppTextStyles.bodyMedium,
       ),
       trailing: Icon(
         Icons.arrow_forward_ios,
         size: 16,
-        color: isLogout ? Colors.red : Colors.grey[400],
+        color: isLogout ? logoutColor : Colors.grey[400],
       ),
       onTap: () {},
     );
@@ -255,18 +240,12 @@ class ProfilePage extends StatelessWidget {
       children: [
         Text(
           'Versi 1.0.0',
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[500],
-          ),
+          style: AppTextStyles.caption,
         ),
         const SizedBox(height: 4),
         Text(
           'Copyright © 2024 Access.',
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[500],
-          ),
+          style: AppTextStyles.caption,
         ),
       ],
     );
