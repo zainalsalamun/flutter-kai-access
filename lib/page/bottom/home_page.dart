@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
               'Selamat Siang',
               style: AppTextStyles.bodyMediumWhite70,
             ),
-            Text(
+            const Text(
               'ZAINAL',
               style: AppTextStyles.h5White,
             ),
@@ -74,7 +74,10 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [primaryColor, primaryColor.withOpacity(0.7)],
+                        colors: [
+                          primaryColor,
+                          primaryColor.withValues(alpha: 0.7)
+                        ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -221,7 +224,7 @@ class HomePage extends StatelessWidget {
                                   Container(
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: whooshColor.withOpacity(0.1),
+                                      color: whooshColor.withValues(alpha: 0.1),
                                       shape: BoxShape.circle,
                                     ),
                                     child: const Icon(
@@ -326,59 +329,64 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Trip Planner Card
-            Container(
-              height: 120,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [primaryColor, promoGradientStart],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/trip-planner');
+              },
+              child: Container(
+                height: 120,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [primaryColor, promoGradientStart],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: primaryColor.withValues(alpha: 0.3),
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: primaryColor.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Image.asset(
-                    'assets/logo_kai.png',
-                    height: 70,
-                    width: 100,
-                    fit: BoxFit.fill,
-                  ),
-                  const Spacer(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Trip Planner',
-                        style: AppTextStyles.h5White,
-                      ),
-                      const SizedBox(height: 4),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(20),
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/logo_kai.png',
+                      height: 70,
+                      width: 100,
+                      fit: BoxFit.fill,
+                    ),
+                    const Spacer(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Text(
+                          'Trip Planner',
+                          style: AppTextStyles.h5White,
                         ),
-                        child: const Text(
-                          'Coba Sekarang',
-                          style: AppTextStyles.bodySmallWhite,
+                        const SizedBox(height: 4),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            'Coba Sekarang',
+                            style: AppTextStyles.bodySmallWhite,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 24),
