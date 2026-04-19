@@ -1,0 +1,59 @@
+{
+  "train_categories": [
+    {
+      "title": "Antar Kota",
+      "icon": "train",
+      "color": "#FF6B35",
+      "action": "navigation",
+      "route": "/antar-kota"
+    },
+    {
+      "title": "Lokal",
+      "icon": "train",
+      "color": "#4ECDC4",
+      "action": "snackbar",
+      "message": "Layanan Kereta Lokal sedang dalam pengembangan"
+    },
+    {
+      "title": "Komuter",
+      "icon": "train",
+      "color": "#FFD166",
+      "action": "snackbar",
+      "message": "Layanan Kereta Komuter sedang dalam pengembangan"
+    },
+    {
+      "title": "LRT",
+      "icon": "train",
+      "color": "#06D6A0",
+      "action": "snackbar",
+      "message": "Layanan LRT sedang dalam pengembangan"
+    },
+    {
+      "title": "Kereta Bandara",
+      "icon": "airplanemode_active",
+      "color": "#FF6B35",
+      "action": "snackbar",
+      "message": "Layanan Kereta Bandara sedang dalam pengembangan"
+    },
+    {
+      "title": "Whoosh",
+      "icon": "bolt",
+      "color": "#E63946",
+      "action": "bottomsheet"
+    }
+  ],
+  "destinations": [
+    {
+      "city": "Jakarta",
+      "image": "assets/kota/jakarta.png"
+    },
+    {
+      "city": "Bandung",
+      "image": "assets/kota/bandung.png"
+    },
+    {
+      "city": "Yogyakarta",
+      "image": "assets/kota/yogyakarta.png"
+    }
+  ]
+}
