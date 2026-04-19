@@ -8,15 +8,11 @@ class PromoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: colorWhite,
         elevation: 0,
         title: const Text(
           'Promo',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+          style: AppTextStyles.appBarTitle,
         ),
         centerTitle: true,
       ),
@@ -49,7 +45,7 @@ class PromoPage extends StatelessWidget {
               // Featured Promo Section
               const Text(
                 'Promo Spesial',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: AppTextStyles.h5,
               ),
               const SizedBox(height: 12),
               SizedBox(
@@ -85,13 +81,14 @@ class PromoPage extends StatelessWidget {
                 children: [
                   const Text(
                     'Promo Hotel',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: AppTextStyles.h5,
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       'Lihat Semua',
-                      style: TextStyle(color: primaryColor),
+                      style: AppTextStyles.bodyMedium
+                          .copyWith(color: primaryColor),
                     ),
                   ),
                 ],
@@ -149,10 +146,9 @@ class PromoPage extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: TextStyle(
-            color: selected ? Colors.white : Colors.grey[700],
-            fontWeight: FontWeight.w500,
-          ),
+          style: selected
+              ? AppTextStyles.bodyMediumWhite
+              : AppTextStyles.bodyMedium.copyWith(color: grey700),
         ),
       ),
     );
@@ -195,11 +191,7 @@ class PromoPage extends StatelessWidget {
               ),
               child: Text(
                 discount,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
+                style: AppTextStyles.badgeMedium,
               ),
             ),
           ),
@@ -266,19 +258,12 @@ class PromoPage extends StatelessWidget {
               children: [
                 Text(
                   price,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor,
-                  ),
+                  style: AppTextStyles.price,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                  ),
+                  style: AppTextStyles.bodyMedium.copyWith(color: grey700),
                 ),
               ],
             ),
