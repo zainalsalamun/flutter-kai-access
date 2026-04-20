@@ -12,10 +12,7 @@ class KaiPayPage extends StatelessWidget {
         elevation: 0,
         title: const Text(
           'KAI Pay',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: AppTextStyles.appBarTitle,
         ),
         centerTitle: true,
         leading: IconButton(
@@ -56,21 +53,13 @@ class KaiPayPage extends StatelessWidget {
                     backgroundColor: Colors.orange,
                     child: const Text(
                       'Z',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.h3White,
                     ),
                   ),
                   const SizedBox(height: 12),
                   const Text(
                     'ZAINAL',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.h4White,
                   ),
                   const SizedBox(height: 4),
                   Container(
@@ -82,9 +71,9 @@ class KaiPayPage extends StatelessWidget {
                       color: Colors.amber,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: [
+                      children: const [
                         Icon(
                           Icons.verified_user,
                           color: Colors.white,
@@ -93,22 +82,15 @@ class KaiPayPage extends StatelessWidget {
                         SizedBox(width: 4),
                         Text(
                           'Premium Member',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                          style: AppTextStyles.badgeMedium,
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
+                  Text(
                     'Co-Branding dengan KAI Travel',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 12,
-                    ),
+                    style: AppTextStyles.bodySmallWhite70,
                   ),
                 ],
               ),
@@ -120,10 +102,7 @@ class KaiPayPage extends StatelessWidget {
               children: [
                 const Text(
                   'Riwayat KAI Pay',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: AppTextStyles.h5,
                 ),
               ],
             ),
@@ -155,19 +134,12 @@ class KaiPayPage extends StatelessWidget {
                   const SizedBox(height: 16),
                   const Text(
                     'Belum Ada Transaksi Hari Ini',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTextStyles.h6,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Setelah melakukan transaksi menggunakan KAI Pay, kamu bisa melihat riwayat transaksimu di sini',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
+                    style: AppTextStyles.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -187,10 +159,7 @@ class KaiPayPage extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(
-          color: selected ? Colors.white : Colors.grey[700],
-          fontWeight: FontWeight.w500,
-        ),
+        style: selected ? AppTextStyles.button : AppTextStyles.labelMedium,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
     );
