@@ -1,0 +1,27 @@
+[
+  {
+    "city": "Yogyakarta",
+    "price": "Mulai Rp 150rb",
+    "image_url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=320&h=200&fit=crop"
+  },
+  {
+    "city": "Bandung",
+    "price": "Mulai Rp 120rb",
+    "image_url": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=320&h=200&fit=crop"
+  },
+  {
+    "city": "Semarang",
+    "price": "Mulai Rp 130rb",
+    "image_url": "https://images.unsplash.com/photo-1585543805890-6051f7829f98?w=320&h=200&fit=crop"
+  },
+  {
+    "city": "Surabaya",
+    "price": "Mulai Rp 180rb",
+    "image_url": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=320&h=200&fit=crop"
+  },
+  {
+    "city": "Jakarta",
+    "price": "Mulai Rp 100rb",
+    "image_url": "https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=320&h=200&fit=crop"
+  }
+]
