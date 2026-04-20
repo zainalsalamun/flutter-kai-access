@@ -28,3 +28,4 @@ flutter:
     - assets/kai_pay.png
     - assets/logo_kai.png
     - assets/train_data.json
+    - assets/home_destinations.json
