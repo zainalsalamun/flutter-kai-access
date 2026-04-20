@@ -45,16 +45,47 @@ class _TrainPageState extends State<TrainPage> {
     return Color(int.parse('FF$hexColor', radix: 16));
   }
 
-  IconData _getIconData(String iconName) {
-    switch (iconName) {
-      case 'train':
+  IconData _getCategoryIcon(String title) {
+    switch (title.toLowerCase()) {
+      case 'antar kota':
         return Icons.train;
-      case 'airplanemode_active':
-        return Icons.airplanemode_active;
-      case 'bolt':
-        return Icons.bolt;
+      case 'lokal':
+        return Icons.train_outlined;
+      case 'komuter':
+      case 'commuter':
+        return Icons.directions_railway;
+      case 'lrt':
+        return Icons.tram;
+      case 'kereta bandara':
+      case 'bandara':
+        return Icons.airport_shuttle;
+      case 'whoosh':
+        return Icons.train;
       default:
         return Icons.train;
+    }
+  }
+
+  Color _getCategoryColor(String title, [String? fallbackHex]) {
+    switch (title.toLowerCase()) {
+      case 'antar kota':
+        return antarKotaColor;
+      case 'lokal':
+        return lokalColor;
+      case 'komuter':
+      case 'commuter':
+        return commuterColor;
+      case 'lrt':
+        return lrtColor;
+      case 'kereta bandara':
+      case 'bandara':
+        return bandaraColor;
+      case 'whoosh':
+        return whooshColor;
+      default:
+        return fallbackHex != null
+            ? _getColorFromHex(fallbackHex)
+            : primaryColor;
     }
   }
 
@@ -96,8 +127,11 @@ class _TrainPageState extends State<TrainPage> {
                       padding: const EdgeInsets.only(right: 16),
                       child: _buildTrainCategory(
                         category['title'],
-                        _getIconData(category['icon']),
-                        _getColorFromHex(category['color']),
+                        _getCategoryIcon(category['title']),
+                        _getCategoryColor(
+                          category['title'],
+                          category['color'],
+                        ),
                         () => _handleCategoryAction(category),
                       ),
                     );
@@ -162,7 +196,7 @@ class _TrainPageState extends State<TrainPage> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: color.withOpacity(0.3),
+                  color: color.withValues(alpha: 0.3),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                 ),
@@ -209,7 +243,7 @@ class _TrainPageState extends State<TrainPage> {
               end: Alignment.bottomCenter,
               colors: [
                 Colors.transparent,
-                Colors.black.withOpacity(0.7),
+                Colors.black.withValues(alpha: 0.7),
               ],
             ),
           ),
@@ -253,11 +287,11 @@ class _TrainPageState extends State<TrainPage> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: whooshColor.withOpacity(0.1),
+                    color: whooshColor.withValues(alpha: 0.1),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.bolt,
+                    Icons.train,
                     color: whooshColor,
                     size: 30,
                   ),
@@ -354,7 +388,7 @@ class _TrainPageState extends State<TrainPage> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: whooshColor.withOpacity(0.1),
+                color: whooshColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
