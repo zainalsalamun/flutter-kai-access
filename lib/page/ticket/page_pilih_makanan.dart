@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/theme.dart';
 
 class PagePilihMakanan extends StatelessWidget {
   const PagePilihMakanan({super.key});
@@ -8,24 +9,34 @@ class PagePilihMakanan extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        title: Text(
-          'Pesan Tiket',
-          style: TextStyle(color: Colors.black),
+        title: const Text(
+          'RailFood',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
         actions: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               children: [
-                Icon(Icons.timer, color: Colors.black),
-                SizedBox(width: 4),
+                Icon(Icons.timer, color: primaryColor, size: 20),
+                const SizedBox(width: 4),
                 Text(
                   '00 : 06 : 29',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -36,70 +47,130 @@ class PagePilihMakanan extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.green),
-                    SizedBox(width: 4),
-                    Text('Kursi', style: TextStyle(fontSize: 16)),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Colors.green),
-                    SizedBox(width: 4),
-                    Text('Perlindungan Ekstra', style: TextStyle(fontSize: 16)),
-                  ],
-                ),
-              ],
+            // Progress Indicators
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildProgressItem(Icons.check_circle, 'Kursi', true),
+                  _buildProgressItem(Icons.check_circle, 'Perlindungan', true),
+                  _buildProgressItem(Icons.restaurant_menu, 'RailFood', false),
+                ],
+              ),
             ),
+            const SizedBox(height: 32),
+
+            // RailFood Promo
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.fastfood, size: 100, color: Colors.blue),
-                  SizedBox(height: 16.0),
-                  Text(
-                    'Langsung pesan makanan & minuman untuk dikonsumsi dalam kereta agar perjalanan kamu lebih nyaman.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, color: Colors.black54),
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: primaryColor.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.fastfood,
+                      size: 80,
+                      color: primaryColor,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Pesan Makanan & Minuman',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Text(
+                      'Langsung pesan makanan & minuman untuk dikonsumsi dalam kereta agar perjalanan kamu lebih nyaman.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('PILIH MAKANAN & MINUMAN',
-                  style: TextStyle(color: Colors.white)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            const SizedBox(height: 16),
+
+            // Buttons
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                  'PILIH MAKANAN & MINUMAN',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                minimumSize: Size(double.infinity, 50),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
               ),
             ),
-            SizedBox(height: 8.0),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/layanan-transportasi');
-              },
-              child: Text('LEWATI'),
-              style: OutlinedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/layanan-transportasi');
+                },
+                child: Text(
+                  'LEWATI',
+                  style: TextStyle(
+                      color: primaryColor, fontWeight: FontWeight.bold),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                minimumSize: Size(double.infinity, 50),
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  side: BorderSide(color: primaryColor),
+                ),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildProgressItem(IconData icon, String label, bool completed) {
+    return Row(
+      children: [
+        Icon(
+          completed ? Icons.check_circle : icon,
+          color: completed ? Colors.green : Colors.grey,
+          size: 20,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: completed ? Colors.green : Colors.grey,
+            fontWeight: completed ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+      ],
     );
   }
 }
