@@ -29,3 +29,8 @@ flutter:
     - assets/logo_kai.png
     - assets/train_data.json
     - assets/home_destinations.json
+    - assets/ticket_list_data.json
+    - assets/train_ticket_screen_data.json
+    - assets/recent_searches.json
+    - assets/protection_extra_data.json
+    - assets/pesan_ticket_lanjutan_data.json
