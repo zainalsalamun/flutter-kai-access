@@ -1,0 +1,38 @@
+[
+  {
+    "name": "WATES (WT)",
+    "location": "KOTA YOGYAKARTA"
+  },
+  {
+    "name": "LEMPUYANGAN (LPN)",
+    "location": "KOTA YOGYAKARTA"
+  },
+  {
+    "name": "PASAR SENEN (PSE)",
+    "location": "JAKARTA PUSAT"
+  },
+  {
+    "name": "YOGYAKARTA (YK)",
+    "location": "KOTA YOGYAKARTA"
+  },
+  {
+    "name": "KLATEN (KT)",
+    "location": "KABUPATEN KLATEN"
+  },
+  {
+    "name": "GAMBIR (GMR)",
+    "location": "JAKARTA"
+  },
+  {
+    "name": "BANDUNG (BD)",
+    "location": "KOTA BANDUNG"
+  },
+  {
+    "name": "KOTA BANDUNG",
+    "location": "SEMUA STASIUN DI KOTA BANDUNG"
+  },
+  {
+    "name": "KOTA SEMARANG",
+    "location": "SEMUA STASIUN DI KOTA SEMARANG"
+  }
+]
