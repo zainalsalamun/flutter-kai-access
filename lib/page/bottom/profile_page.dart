@@ -42,10 +42,10 @@ class ProfilePage extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            const Color.fromARGB(255, 167, 138, 215),
-            const Color.fromARGB(255, 152, 71, 166)
+            Color.fromARGB(255, 167, 138, 215),
+            Color.fromARGB(255, 152, 71, 166)
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -70,10 +70,10 @@ class ProfilePage extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: colorWhite, width: 2),
                 ),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 32,
                   backgroundColor: profileAvatarColor,
-                  child: const Text(
+                  child: Text(
                     'Z',
                     style: AppTextStyles.h3White,
                   ),
@@ -236,13 +236,13 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _buildAppInfo() {
-    return Column(
+    return const Column(
       children: [
         Text(
           'Versi 1.0.0',
           style: AppTextStyles.caption,
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4),
         Text(
           'Copyright © 2024 Access.',
           style: AppTextStyles.caption,
