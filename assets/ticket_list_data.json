@@ -1,0 +1,26 @@
+[
+  {
+    "booking_code": "I2E7M8Z",
+    "train_name": "SENJA UTAMA YK",
+    "class_name": "EKONOMI (CB)",
+    "train_number": "No Kereta 140",
+    "departure_station": "PASARSENEN (PSE)",
+    "departure_date": "Jumat, 28 Juni 2024",
+    "arrival_station": "YOGYAKARTA (YK)",
+    "arrival_date": "Sabtu, 29 Juni 2024",
+    "departure_time": "19:05",
+    "arrival_time": "02:35"
+  },
+  {
+    "booking_code": "K9D4N2P",
+    "train_name": "BANGUNKARTA",
+    "class_name": "BISNIS (B)",
+    "train_number": "No Kereta 124",
+    "departure_station": "GAMBIR (GMR)",
+    "departure_date": "Selasa, 2 Juli 2024",
+    "arrival_station": "SURABAYA (SBY)",
+    "arrival_date": "Rabu, 3 Juli 2024",
+    "departure_time": "08:00",
+    "arrival_time": "13:30"
+  }
+]
