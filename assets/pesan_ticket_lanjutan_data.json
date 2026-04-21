@@ -1,0 +1,21 @@
+{
+  "journey_info": {
+    "date": "Jum, 12 Jul 2024",
+    "day_offset": "+1 hari",
+    "schedule": "19.00 - 02.35",
+    "origin_station": "PASARSENEN",
+    "origin_city": "Jakarta",
+    "destination_station": "YOGYAKARTA",
+    "destination_city": "Yogyakarta",
+    "train_name": "SENJA UTAMA YK (140A)",
+    "train_class": "EKONOMI (CA)",
+    "passenger_summary": "1 Dewasa"
+  },
+  "passenger_info": {
+    "section_title": "Kereta Pergi",
+    "service_label": "Antar Kota",
+    "passenger_title": "Penumpang 1 (Dewasa)",
+    "passenger_detail": "ZAINAL • Premium 1 / Kursi 1A",
+    "button_label": "Pilih Kursi"
+  }
+}
