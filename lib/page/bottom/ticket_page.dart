@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../theme/theme.dart';
 
 class TicketPage extends StatefulWidget {
@@ -11,6 +14,31 @@ class TicketPage extends StatefulWidget {
 class _TicketPageState extends State<TicketPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late final Future<List<Map<String, dynamic>>> _ticketListFuture =
+      _loadTicketList();
+
+  Future<List<Map<String, dynamic>>> _loadTicketList() async {
+    final jsonString =
+        await rootBundle.loadString('assets/ticket_list_data.json');
+    final List<dynamic> jsonData = json.decode(jsonString);
+
+    return jsonData
+        .map(
+          (item) => {
+            'booking_code': item['booking_code'] as String,
+            'train_name': item['train_name'] as String,
+            'class_name': item['class_name'] as String,
+            'train_number': item['train_number'] as String,
+            'departure_station': item['departure_station'] as String,
+            'departure_date': item['departure_date'] as String,
+            'arrival_station': item['arrival_station'] as String,
+            'arrival_date': item['arrival_date'] as String,
+            'departure_time': item['departure_time'] as String,
+            'arrival_time': item['arrival_time'] as String,
+          },
+        )
+        .toList();
+  }
 
   @override
   void initState() {
@@ -83,8 +111,8 @@ class _TicketPageState extends State<TicketPage>
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [primaryColor, const Color(0xFF9C27B0)],
+              gradient: const LinearGradient(
+                colors: [primaryColor, Color(0xFF9C27B0)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -124,7 +152,7 @@ class _TicketPageState extends State<TicketPage>
                         backgroundColor: Colors.transparent,
                         builder: (context) => Container(
                           padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: colorWhite,
                             borderRadius:
                                 BorderRadius.vertical(top: Radius.circular(20)),
@@ -245,33 +273,48 @@ class _TicketPageState extends State<TicketPage>
           ),
           const SizedBox(height: 20),
 
-          // Ticket Card
-          _buildTicketCard(
-            'I2E7M8Z',
-            'SENJA UTAMA YK',
-            'EKONOMI (CB)',
-            'No Kereta 140',
-            'PASARSENEN (PSE)',
-            'Jumat, 28 Juni 2024',
-            'YOGYAKARTA (YK)',
-            'Sabtu, 29 Juni 2024',
-            '19:05',
-            '02:35',
-          ),
-          const SizedBox(height: 12),
+          FutureBuilder<List<Map<String, dynamic>>>(
+            future: _ticketListFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
 
-          // Sample Additional Tickets
-          _buildTicketCard(
-            'K9D4N2P',
-            'BANGUNKARTA',
-            'BISNIS (B)',
-            'No Kereta 124',
-            'GAMBIR (GMR)',
-            'Selasa, 2 Juli 2024',
-            'SURABAYA (SBY)',
-            'Rabu, 3 Juli 2024',
-            '08:00',
-            '13:30',
+              if (snapshot.hasError || !snapshot.hasData) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: Center(
+                    child: Text('Data tiket tidak tersedia'),
+                  ),
+                );
+              }
+
+              final tickets = snapshot.data!;
+
+              return Column(
+                children: tickets
+                    .map(
+                      (ticket) => _buildTicketCard(
+                        ticket['booking_code'] as String,
+                        ticket['train_name'] as String,
+                        ticket['class_name'] as String,
+                        ticket['train_number'] as String,
+                        ticket['departure_station'] as String,
+                        ticket['departure_date'] as String,
+                        ticket['arrival_station'] as String,
+                        ticket['arrival_date'] as String,
+                        ticket['departure_time'] as String,
+                        ticket['arrival_time'] as String,
+                      ),
+                    )
+                    .toList(),
+              );
+            },
           ),
         ],
       ),
@@ -317,7 +360,7 @@ class _TicketPageState extends State<TicketPage>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Layanan Antar Kota',
                             style: AppTextStyles.h5White,
                           ),
@@ -364,8 +407,8 @@ class _TicketPageState extends State<TicketPage>
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [antarKotaColor, const Color(0xFF1565C0)],
+              gradient: const LinearGradient(
+                colors: [antarKotaColor, Color(0xFF1565C0)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
