@@ -1,0 +1,26 @@
+[
+  {
+    "booking_code": "I2E7M8Z",
+    "train_name": "SENJA UTAMA YK",
+    "class_name": "EKONOMI (CB)",
+    "train_number": "140",
+    "departure_time": "19:05",
+    "departure_station": "PASARSENEN (PSE)",
+    "departure_date": "Jumat 28 Juni 2024",
+    "arrival_time": "02:35",
+    "arrival_station": "YOGYAKARTA (YK)",
+    "arrival_date": "Sabtu 29 Juni 2024"
+  },
+  {
+    "booking_code": "O3H72FM",
+    "train_name": "JAYAKARTA",
+    "class_name": "EKONOMI (CA)",
+    "train_number": "217",
+    "departure_time": "19:03",
+    "departure_station": "LEMPUYANGAN (LPN)",
+    "departure_date": "Minggu 30 Juni 2024",
+    "arrival_time": "02:41",
+    "arrival_station": "PASARSENEN (PSE)",
+    "arrival_date": "Senin 01 Juli 2024"
+  }
+]
