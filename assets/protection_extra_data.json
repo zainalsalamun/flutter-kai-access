@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Perlindungan Kecelakaan Diri",
+    "provider": "PT Sompo Insurance",
+    "description": "Kompensasi kecelakaan perjalanan hingga Rp 10.000.000",
+    "price": "Rp4.500/Pax",
+    "checked": true
+  },
+  {
+    "title": "Jaminan Refund 100%",
+    "provider": "PT Mitra Jasa Pratama",
+    "description": "Kompensasi pembatalan perjalanan 100%",
+    "price": "Rp12.400/Pax",
+    "checked": true
+  }
+]
