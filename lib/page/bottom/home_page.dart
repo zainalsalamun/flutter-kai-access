@@ -1,8 +1,34 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../theme/theme.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final Future<List<Map<String, dynamic>>> _popularDestinationsFuture =
+      _loadPopularDestinations();
+
+  Future<List<Map<String, dynamic>>> _loadPopularDestinations() async {
+    final jsonString = await rootBundle.loadString('assets/home_destinations.json');
+    final List<dynamic> jsonData = json.decode(jsonString);
+
+    return jsonData
+        .map(
+          (item) => {
+            'city': item['city'] as String,
+            'price': item['price'] as String,
+            'image_url': item['image_url'] as String,
+          },
+        )
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -534,24 +560,37 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 12),
             SizedBox(
               height: 180,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _buildDestinationCard('Yogyakarta', 'Mulai Rp 150rb',
-                      'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=320&h=200&fit=crop'),
-                  const SizedBox(width: 12),
-                  _buildDestinationCard('Bandung', 'Mulai Rp 120rb',
-                      'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=320&h=200&fit=crop'),
-                  const SizedBox(width: 12),
-                  _buildDestinationCard('Semarang', 'Mulai Rp 130rb',
-                      'https://images.unsplash.com/photo-1585543805890-6051f7829f98?w=320&h=200&fit=crop'),
-                  const SizedBox(width: 12),
-                  _buildDestinationCard('Surabaya', 'Mulai Rp 180rb',
-                      'https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=320&h=200&fit=crop'),
-                  const SizedBox(width: 12),
-                  _buildDestinationCard('Jakarta', 'Mulai Rp 100rb',
-                      'https://images.unsplash.com/photo-1555899434-94d1368aa7af?w=320&h=200&fit=crop'),
-                ],
+              child: FutureBuilder<List<Map<String, dynamic>>>(
+                future: _popularDestinationsFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (snapshot.hasError || !snapshot.hasData) {
+                    return const Center(
+                      child: Text('Data tujuan populer tidak tersedia'),
+                    );
+                  }
+
+                  final destinations = snapshot.data!;
+
+                  return ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: destinations.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, index) {
+                      final destination = destinations[index];
+                      return _buildDestinationCard(
+                        destination['city'] as String,
+                        destination['price'] as String,
+                        destination['image_url'] as String,
+                      );
+                    },
+                  );
+                },
               ),
             ),
             const SizedBox(height: 16),
