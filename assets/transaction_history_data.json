@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Tiket Kereta Argo Bromo Anggrek",
+    "subtitle": "Pemesanan perjalanan antar kota",
+    "status": "Selesai",
+    "amount": "Rp 740.000",
+    "amount_value": 740000,
+    "date": "20 Apr 2026, 09:12",
+    "payment_method": "KAI Pay",
+    "code": "TRX-ABA-2048",
+    "route_or_description": "Gambir -> Surabaya Pasar Turi",
+    "note": "2 penumpang, kursi Eksekutif 3A dan 3B",
+    "type": "train"
+  },
+  {
+    "title": "RailFood Nasi Goreng Parahyangan",
+    "subtitle": "Pesanan makanan selama perjalanan",
+    "status": "Selesai",
+    "amount": "Rp 58.000",
+    "amount_value": 58000,
+    "date": "19 Apr 2026, 18:40",
+    "payment_method": "VA BCA",
+    "code": "TRX-RFD-1021",
+    "route_or_description": "Kereta Lodaya Tambahan",
+    "note": "1 menu makanan dan 1 minuman",
+    "type": "food"
+  },
+  {
+    "title": "Hotel Next Yogyakarta",
+    "subtitle": "Pemesanan hotel terintegrasi",
+    "status": "Menunggu",
+    "amount": "Rp 620.000",
+    "amount_value": 620000,
+    "date": "18 Apr 2026, 14:25",
+    "payment_method": "Virtual Account",
+    "code": "TRX-HTL-8872",
+    "route_or_description": "1 malam, Deluxe Room",
+    "note": "Batas pembayaran 21 Apr 2026 pukul 23:59",
+    "type": "hotel"
+  },
+  {
+    "title": "Refund Tiket Gajayana",
+    "subtitle": "Pengembalian dana pembatalan tiket",
+    "status": "Refund",
+    "amount": "Rp 385.000",
+    "amount_value": 385000,
+    "date": "16 Apr 2026, 11:08",
+    "payment_method": "Transfer Bank",
+    "code": "TRX-RFD-5507",
+    "route_or_description": "Malang -> Gambir",
+    "note": "Dana dikirim ke rekening terdaftar",
+    "type": "refund"
+  },
+  {
+    "title": "Tiket Kereta Taksaka",
+    "subtitle": "Pemesanan perjalanan bisnis",
+    "status": "Dibatalkan",
+    "amount": "Rp 510.000",
+    "amount_value": 510000,
+    "date": "14 Apr 2026, 07:55",
+    "payment_method": "QRIS",
+    "code": "TRX-TSK-7319",
+    "route_or_description": "Yogyakarta -> Gambir",
+    "note": "Dibatalkan otomatis karena pembayaran melewati batas waktu",
+    "type": "train"
+  },
+  {
+    "title": "Tiket Kereta Whoosh",
+    "subtitle": "Perjalanan cepat Jakarta - Bandung",
+    "status": "Selesai",
+    "amount": "Rp 300.000",
+    "amount_value": 300000,
+    "date": "12 Apr 2026, 13:15",
+    "payment_method": "KAI Pay",
+    "code": "TRX-WHS-1184",
+    "route_or_description": "Halim -> Padalarang",
+    "note": "2 tiket kelas Premium Economy",
+    "type": "train"
+  }
+]
