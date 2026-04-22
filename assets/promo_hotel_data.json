@@ -1,0 +1,32 @@
+[
+  {
+    "image_path": "assets/promo/hotel/hotelhorizon.png",
+    "price": "Rp 450.000",
+    "title": "Hotel Horison Kota Lama Semarang",
+    "badge": "Diskon 25%"
+  },
+  {
+    "image_path": "assets/promo/hotel/questhotel.png",
+    "price": "15% OFF",
+    "title": "Quest Hotel Semarang",
+    "badge": "Exclusive"
+  },
+  {
+    "image_path": "assets/promo/hotel/favehotelmadiun.png",
+    "price": "15% OFF",
+    "title": "Fave Hotel Madiun",
+    "badge": "Best Seller"
+  },
+  {
+    "image_path": "assets/promo/hotel/nexthotel.png",
+    "price": "20% OFF",
+    "title": "Next Hotel Yogyakarta",
+    "badge": "Promo Minggu Ini"
+  },
+  {
+    "image_path": "assets/promo/hotel/thesunanhotel.png",
+    "price": "18% OFF",
+    "title": "The Sunan Hotel Solo",
+    "badge": "Harga Spesial"
+  }
+]
