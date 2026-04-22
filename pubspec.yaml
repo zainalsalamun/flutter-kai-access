@@ -34,3 +34,5 @@ flutter:
     - assets/recent_searches.json
     - assets/protection_extra_data.json
     - assets/pesan_ticket_lanjutan_data.json
+    - assets/transaction_history_data.json
+    - assets/promo_hotel_data.json
